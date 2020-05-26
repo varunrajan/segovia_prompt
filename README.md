@@ -2,6 +2,8 @@
 
 ## Conclusions and next steps
 
+### Result
+
 You can find the script and resulting transaction status message in [send_shillings.ipynb](https://github.com/varunrajan/segovia_prompt/blob/master/send_shillings.ipynb). For ease of access, I also included the script in [send_shillings.py](https://github.com/varunrajan/segovia_prompt/blob/master/send_shillings.py) as I noticed the `.ipynb` format takes some time and occasional refreshes to load properly in GitHub.
 
 As you can see, I used the same function (`send_request_to_gateway`) to send the payment (to `/api/pay`) and subsequently check on the transaction's status (by sending the request to the `/api/transactionstatus` endpoint) so that I would receive a message about its status right away.
@@ -31,7 +33,12 @@ To see the result after the transaction `statusType` is no longer `pending`, I'v
  'finished': True}
 ```
 
-I understand that [Callbacks](https://docs.thesegovia.com/api-reference/#callbacks) are the preferred way to receive results, and given more time I would've attempted to use Callbacks to know the result of the attempted transaction as opposed to explicitly pinging the `/api/transactionstatus` endpoint.
+### Potential next steps
+
+I understand that [Callbacks](https://docs.thesegovia.com/api-reference/#callbacks) are the preferred way to receive results. Were I building this script for a client or attempting to receive updates as the status of the transaction changed, I would attempt to use Callbacks as opposed to explicitly pinging the `/api/transactionstatus` endpoint.
+
+Given that this particular transaction ultimately failed, I would also want to explore the underlying reasons why and hopefully resolve them.
+
 
 ## Context and instructions
 
