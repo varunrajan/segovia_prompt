@@ -19,7 +19,7 @@ I tend to receive the following message, as the gateway has not yet attempted to
  'finished': True}
 ```
  
-This is my understanding, because I've locally sent a request the `/api/transactionstatus` endpoint separately a few moments after sending the request to `/api/pay`, and received the following result:
+To see the result after the transaction `statusType` is no longer `pending`, I've locally sent a request the `/api/transactionstatus` endpoint separately a few moments after sending the request to `/api/pay`, and received the following result:
 
 ```
 {'transactions': [{'transactionId': 'f212f4c3-2efe-4abd-ab2f-ca174491e804',
