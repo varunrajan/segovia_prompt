@@ -4,7 +4,7 @@
 
 You can find the script and resulting transaction status message in [send_shillings.ipynb](https://github.com/varunrajan/segovia_prompt/blob/master/send_shillings.ipynb). For ease of access, I also included the script in [send_shillings.py](https://github.com/varunrajan/segovia_prompt/blob/master/send_shillings.py) as I noticed the `.ipynb` format takes some time and occasional refreshes to load properly in GitHub.
 
-As you can see, I used the same function (`send_request_to_gateway`) to send the payment (to `/api/status`) and subsequently check on the transaction's status (by sending the request to the `/api/transactionstatus` endpoint) so that I would receive a message about its status right away.
+As you can see, I used the same function (`send_request_to_gateway`) to send the payment (to `/api/pay`) and subsequently check on the transaction's status (by sending the request to the `/api/transactionstatus` endpoint) so that I would receive a message about its status right away.
 
 I tend to receive the following message, as the gateway has not yet attempted to process the payment:
 
