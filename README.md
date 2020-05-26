@@ -1,5 +1,38 @@
 # Segovia Deployment Manager Coding Exercise
 
+## Conclusions and next steps
+
+You can find the script and resulting transaction status message in [send_shillings.ipynb](https://github.com/varunrajan/segovia_prompt/blob/master/send_shillings.ipynb). As you can see, I used the same function (`send_request_to_gateway`) to send the payment (to `/api/status`) and subsequently check on the transaction's status (by sending the request to the `/api/transactionstatus` endpoint) so that I would receive a message about its status right away.
+
+I tend to receive the following message, as the gateway has not yet attempted to process the payment:
+
+```
+{'transactions': [{'transactionId': 'f212f4c3-2efe-4abd-ab2f-ca174491e804',
+   'transactionType': 'pay',
+   'statusCode': 100,
+   'statusDescription': 'The gateway has received the transaction.',
+   'provider': 'autodetect',
+   'finished': False,
+   'statusType': 'pending'}],
+ 'finished': True}
+```
+ 
+This is my understanding, because I've locally sent a request the `/api/transactionstatus` endpoint separately a few moments after sending the request to `/api/pay`, and received the following result:
+
+```
+{'transactions': [{'transactionId': 'f212f4c3-2efe-4abd-ab2f-ca174491e804',
+   'statusCode': 406,
+   'statusDescription': 'Cannot autodetect payment provider - recipient account ID 254999999999 is not a phone number with a valid country calling code',
+   'finished': True,
+   'statusType': 'failed',
+   'transactionType': 'pay'}],
+ 'finished': True}
+```
+
+I understand that [Callbacks](https://docs.thesegovia.com/api-reference/#callbacks) are the preferred way to receive results, and given more time I would've attempted to use Callbacks to know the result of the attempted transaction as opposed to explicitly pinging the `/api/transactionstatus` endpoint.
+
+## Context and instructions
+
 We are excited that you are considering Segovia for your next role. As part of the interview process, we ask candidates to demonstrate their technical ability via a take-home exercise. Please take no more than 2 hours to finish this exercise.
 
 Your task is to write a script that uses our public API to pay an amount to a recipient and then reports the status of that transaction immediately afterwards. For example, we'd like to send `1,200 Kenyan Shillings (KES)` to this phone number: `254999999999`.
